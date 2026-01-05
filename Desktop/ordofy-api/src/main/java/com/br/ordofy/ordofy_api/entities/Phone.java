@@ -1,7 +1,10 @@
 package com.br.ordofy.ordofy_api.entities;
 
+import jakarta.persistence.Embeddable;
+
 import java.util.Objects;
 
+@Embeddable
 public class Phone {
     private String countryCode;
     private String areaCode;
@@ -20,24 +23,12 @@ public class Phone {
         return areaCode;
     }
 
-    public void setAreaCode(String areaCode) {
-        this.areaCode = areaCode;
-    }
-
     public String getCountryCode() {
         return countryCode;
     }
 
-    public void setCountryCode(String countryCode) {
-        this.countryCode = countryCode;
-    }
-
     public String getNumber() {
         return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
     }
 
     @Override
@@ -50,5 +41,12 @@ public class Phone {
     @Override
     public int hashCode() {
         return Objects.hash(getCountryCode(), getAreaCode(), getNumber());
+    }
+
+    @Override
+    public String toString() {
+        return "Phone: +" + countryCode
+            + " (" + areaCode
+            + ") " + number;
     }
 }

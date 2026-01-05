@@ -1,7 +1,10 @@
 package com.br.ordofy.ordofy_api.entities;
 
+import jakarta.persistence.Embeddable;
+
 import java.util.Objects;
 
+@Embeddable
 public class LegalEntity {
     private String companyName;
     private String fantasyName;

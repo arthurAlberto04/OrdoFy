@@ -1,8 +1,11 @@
 package com.br.ordofy.ordofy_api.entities;
 
+import jakarta.persistence.Embeddable;
+
 import java.util.Objects;
 import java.util.regex.Pattern;
 
+@Embeddable
 public class Password {
     private static final Pattern PASSWORD_PATTERN =
             Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&]).{8,}$");
@@ -15,7 +18,7 @@ public class Password {
 
     public static Password create(String rawPassword) {
         if (rawPassword == null) {
-            throw new IllegalArgumentException("Password cannot be null or empty");
+            throw new IllegalArgumentException("Password cannot be null");
         }
 
         if (!PASSWORD_PATTERN.matcher(rawPassword).matches()) {

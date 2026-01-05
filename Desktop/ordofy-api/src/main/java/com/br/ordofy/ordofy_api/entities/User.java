@@ -1,23 +1,34 @@
 package com.br.ordofy.ordofy_api.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.*;
+
 import java.time.Instant;
 import java.util.Objects;
 
+@Entity
+@Table
 public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String username;
+    @Embedded
     private Password password;
+    @Embedded
     private Email email;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "GMT")
     private Instant birth;
+    @Embedded
     private Phone phone;
 
     public User() {
     }
 
-    public User(Instant birth, Email email, Integer id, String password, Phone phone, String username) {
+    public User(Instant birth, Email email, String password, Phone phone, String username) {
         this.birth = birth;
         this.email = email;
-        this.id = id;
         this.password = Password.create(password);
         this.phone = phone;
         this.username = username;

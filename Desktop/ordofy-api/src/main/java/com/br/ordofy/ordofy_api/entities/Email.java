@@ -1,8 +1,11 @@
 package com.br.ordofy.ordofy_api.entities;
 
+import jakarta.persistence.Embeddable;
+
 import java.util.Objects;
 import java.util.regex.Pattern;
 
+@Embeddable
 public class Email {
     private static final Pattern EMAIL_PATTERN =
             Pattern.compile("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$");
@@ -11,7 +14,7 @@ public class Email {
 
     public Email(String value) {
         if (value == null) {
-            throw new IllegalArgumentException("Email cannot be null or empty");
+            throw new IllegalArgumentException("Email cannot be null");
         }
         if (!EMAIL_PATTERN.matcher(value).matches()) {
             throw new IllegalArgumentException("Invalid email format");

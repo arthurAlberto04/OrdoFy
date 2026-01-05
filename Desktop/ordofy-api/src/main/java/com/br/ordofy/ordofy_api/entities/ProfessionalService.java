@@ -1,32 +1,62 @@
 package com.br.ordofy.ordofy_api.entities;
 
-import java.math.BigDecimal;
-import java.time.Duration;
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
+import java.util.Objects;
+
+@Entity
+@Table(name = "tb_professional_service")
 public class ProfessionalService {
 
-    private Professional professional;
-    private Service service;
-    private boolean active;
+    @EmbeddedId
+    private ProfessionalServicePk id = new ProfessionalServicePk();
 
-    public ProfessionalService(
-            Professional professional,
-            Service service
-    ) {
-        this.professional = professional;
-        this.service = service;
-        this.active = true;
+    private Boolean active;
+
+    public ProfessionalService() {
     }
 
-    public boolean isActive() {
+    public ProfessionalService(Professional p, Service s){
+        id.setService(s);
+        id.setProfessional(p);
+        active = true;
+    }
+
+    public Boolean getActive() {
         return active;
     }
 
-    public Professional getProfessional() {
-        return professional;
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
-    public Service getService() {
-        return service;
+    public Professional getProfessional(){
+        return id.getProfessional();
+    }
+
+    public void setProfessional(Professional p){
+        id.setProfessional(p);
+    }
+
+    public Service getService(){
+        return id.getService();
+    }
+
+    public void setService(Service s){
+        id.setService(s);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        ProfessionalService that = (ProfessionalService) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 }

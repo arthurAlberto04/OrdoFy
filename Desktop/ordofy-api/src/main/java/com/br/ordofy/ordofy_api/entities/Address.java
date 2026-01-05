@@ -13,23 +13,19 @@ public class Address {
     public Address() {
     }
 
-    public Address(String city, String complement, String country, String neighborhood, Integer number, String state, String street, String zipCode) {
+    public Address(String city, String complement, String country, String neighborhood, Integer number, String state, String zipCode, String street) {
         this.city = city;
         this.complement = complement;
         this.country = country;
         this.neighborhood = neighborhood;
         this.number = number;
         this.state = state;
-        this.street = street;
         this.zipCode = zipCode;
+        this.street = street;
     }
 
     public String getCity() {
         return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
     }
 
     public String getComplement() {
@@ -44,16 +40,8 @@ public class Address {
         return country;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
     public String getNeighborhood() {
         return neighborhood;
-    }
-
-    public void setNeighborhood(String neighborhood) {
-        this.neighborhood = neighborhood;
     }
 
     public Integer getNumber() {
@@ -68,23 +56,11 @@ public class Address {
         return street;
     }
 
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
     public String getState() {
         return state;
     }
 
-    public void setState(String state) {
-        this.state = state;
-    }
-
     public String getZipCode() {
         return zipCode;
-    }
-
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
     }
 }
