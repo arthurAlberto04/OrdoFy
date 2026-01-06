@@ -8,6 +8,9 @@ import java.util.Objects;
 public class Cnpj {
     private String cnpj;
 
+    public Cnpj() {
+    }
+
     public Cnpj(String value) {
         if (!isValid(value)) {
             throw new IllegalArgumentException("Invalid CNPJ");

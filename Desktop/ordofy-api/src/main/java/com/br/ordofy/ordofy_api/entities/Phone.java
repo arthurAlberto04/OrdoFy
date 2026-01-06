@@ -45,7 +45,7 @@ public class Phone {
 
     @Override
     public String toString() {
-        return "Phone: +" + countryCode
+        return "+" + countryCode
             + " (" + areaCode
             + ") " + numberPhone;
     }
