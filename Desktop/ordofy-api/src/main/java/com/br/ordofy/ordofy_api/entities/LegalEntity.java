@@ -1,5 +1,6 @@
 package com.br.ordofy.ordofy_api.entities;
 
+import com.br.ordofy.ordofy_api.entities.enums.Type;
 import jakarta.persistence.Embeddable;
 
 import java.util.Objects;
@@ -7,15 +8,13 @@ import java.util.Objects;
 @Embeddable
 public class LegalEntity {
     private String companyName;
-    private String fantasyName;
     private Cnpj cnpj;
     private Type type;
 
     public LegalEntity() {
     }
 
-    public LegalEntity(String fantasyName, String companyName, Cnpj cnpj, Type type) {
-        this.fantasyName = fantasyName;
+    public LegalEntity(String companyName, Cnpj cnpj, Type type) {
         this.companyName = companyName;
         this.cnpj = cnpj;
         this.type = type;
@@ -27,10 +26,6 @@ public class LegalEntity {
 
     public String getCompanyName() {
         return companyName;
-    }
-
-    public String getFantasyName() {
-        return fantasyName;
     }
 
     public Type getType() {

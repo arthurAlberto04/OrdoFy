@@ -6,17 +6,17 @@ import java.util.Objects;
 
 @Embeddable
 public class Cnpj {
-    private String value;
+    private String cnpj;
 
     public Cnpj(String value) {
         if (!isValid(value)) {
             throw new IllegalArgumentException("Invalid CNPJ");
         }
-        this.value = normalize(value);
+        this.cnpj = normalize(value);
     }
 
     public String getValue() {
-        return value;
+        return cnpj;
     }
 
     private String normalize(String cnpj) {
@@ -24,7 +24,7 @@ public class Cnpj {
     }
 
     public String formatted() {
-        return value.replaceFirst(
+        return cnpj.replaceFirst(
                 "(\\d{2})(\\d{3})(\\d{3})(\\d{4})(\\d{2})",
                 "$1.$2.$3/$4-$5"
         );

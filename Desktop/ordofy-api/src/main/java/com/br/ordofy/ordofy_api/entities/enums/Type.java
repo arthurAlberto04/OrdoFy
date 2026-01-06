@@ -1,4 +1,4 @@
-package com.br.ordofy.ordofy_api.entities;
+package com.br.ordofy.ordofy_api.entities.enums;
 
 public enum Type {
     BARBERSHOP(1),

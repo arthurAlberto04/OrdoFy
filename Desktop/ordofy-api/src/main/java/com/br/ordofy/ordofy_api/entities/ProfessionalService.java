@@ -1,5 +1,6 @@
 package com.br.ordofy.ordofy_api.entities;
 
+import com.br.ordofy.ordofy_api.entities.pk.ProfessionalServicePk;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;

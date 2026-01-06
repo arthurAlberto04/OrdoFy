@@ -1,5 +1,7 @@
-package com.br.ordofy.ordofy_api.entities;
+package com.br.ordofy.ordofy_api.entities.pk;
 
+import com.br.ordofy.ordofy_api.entities.Professional;
+import com.br.ordofy.ordofy_api.entities.Service;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;

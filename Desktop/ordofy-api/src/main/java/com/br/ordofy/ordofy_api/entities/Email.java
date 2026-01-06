@@ -10,7 +10,7 @@ public class Email {
     private static final Pattern EMAIL_PATTERN =
             Pattern.compile("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$");
 
-    private final String value;
+    private final String email;
 
     public Email(String value) {
         if (value == null) {
@@ -19,11 +19,11 @@ public class Email {
         if (!EMAIL_PATTERN.matcher(value).matches()) {
             throw new IllegalArgumentException("Invalid email format");
         }
-        this.value = value.toLowerCase();
+        this.email = value.toLowerCase();
     }
 
-    public String getValue() {
-        return value;
+    public String getemail() {
+        return email;
     }
 
     @Override
@@ -31,16 +31,16 @@ public class Email {
         if (this == o) return true;
         if (!(o instanceof Email)) return false;
         Email email = (Email) o;
-        return value.equals(email.value);
+        return email.equals(email.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(value);
+        return Objects.hash(email);
     }
 
     @Override
     public String toString() {
-        return value;
+        return email;
     }
 }

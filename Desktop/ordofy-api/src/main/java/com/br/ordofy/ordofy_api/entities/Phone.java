@@ -8,7 +8,7 @@ import java.util.Objects;
 public class Phone {
     private String countryCode;
     private String areaCode;
-    private String number;
+    private String numberPhone;
 
     public Phone() {
     }
@@ -16,7 +16,7 @@ public class Phone {
     public Phone(String areaCode, String countryCode, String number) {
         this.areaCode = areaCode;
         this.countryCode = countryCode;
-        this.number = number;
+        this.numberPhone = number;
     }
 
     public String getAreaCode() {
@@ -28,7 +28,7 @@ public class Phone {
     }
 
     public String getNumber() {
-        return number;
+        return numberPhone;
     }
 
     @Override
@@ -47,6 +47,6 @@ public class Phone {
     public String toString() {
         return "Phone: +" + countryCode
             + " (" + areaCode
-            + ") " + number;
+            + ") " + numberPhone;
     }
 }
