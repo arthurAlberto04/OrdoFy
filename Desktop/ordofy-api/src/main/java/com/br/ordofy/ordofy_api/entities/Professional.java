@@ -23,6 +23,10 @@ public class Professional {
     public Professional() {
     }
 
+    public Integer getId(){
+        return id;
+    }
+
     public Professional(Business business, String name) {
         this.business = business;
         this.name = name;

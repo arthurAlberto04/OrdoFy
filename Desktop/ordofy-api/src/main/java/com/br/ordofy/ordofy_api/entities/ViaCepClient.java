@@ -1,7 +1,6 @@
 package com.br.ordofy.ordofy_api.entities;
 
 import com.br.ordofy.ordofy_api.dtos.ViaCepResponseDTO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
