@@ -52,4 +52,8 @@ public class BusinessService {
         LegalEntity le = new LegalEntity(dto.legalEntity().companyName(), new Cnpj(dto.legalEntity().cnpj()), dto.legalEntity().type());
         return new Business(addressService.createAddress(dto.address().zipCode(), dto.address().complement(), dto.address().number()), le, dto.name(), p);
     }
+
+    public Business getReferenceById(int id){
+        return repository.getReferenceById(id);
+    }
 }

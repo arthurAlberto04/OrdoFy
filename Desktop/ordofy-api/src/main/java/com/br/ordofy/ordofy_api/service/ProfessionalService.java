@@ -1,9 +1,13 @@
 package com.br.ordofy.ordofy_api.service;
 
 
+import com.br.ordofy.ordofy_api.dtos.BusinessResponseDTO;
+import com.br.ordofy.ordofy_api.dtos.ProfessionalRequestDTO;
 import com.br.ordofy.ordofy_api.dtos.ProfessionalResponseDTO;
+import com.br.ordofy.ordofy_api.entities.Business;
 import com.br.ordofy.ordofy_api.entities.Professional;
 import com.br.ordofy.ordofy_api.repositories.ProfessionalRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,4 +35,18 @@ public class ProfessionalService {
     private ProfessionalResponseDTO toResponse(Professional p){
         return new ProfessionalResponseDTO(p.getId(), p.getName(), businessService.findById(p.getBusiness().getId()));
     }
+
+    private Professional toProfessional(ProfessionalRequestDTO dto) {
+        return new Professional(businessService.getReferenceById(dto.businessId()), dto.name());
+    }
+
+    public ProfessionalResponseDTO getById(int id) {
+        return toResponse(professionalRepository.getReferenceById(id));
+    }
+
+    public ProfessionalResponseDTO insert(@Valid ProfessionalRequestDTO dto) {
+        return toResponse(professionalRepository.save(toProfessional(dto)));
+    }
+
+
 }
