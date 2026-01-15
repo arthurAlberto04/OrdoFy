@@ -22,7 +22,7 @@ public class Email {
         this.email = value.toLowerCase();
     }
 
-    public String getemail() {
+    public String getEmail() {
         return email;
     }
 
