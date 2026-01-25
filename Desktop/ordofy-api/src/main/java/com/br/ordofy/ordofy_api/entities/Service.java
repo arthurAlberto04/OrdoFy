@@ -20,6 +20,9 @@ public class Service {
     @OneToMany(mappedBy = "id.service")
     private Set<ProfessionalService> professionals = new HashSet<>();
 
+    @OneToMany(mappedBy = "service")
+    private Set<Schedule> appointments = new HashSet<>();
+
     public Service() {
     }
 
@@ -31,6 +34,10 @@ public class Service {
 
     public int getId(){
         return id;
+    }
+
+    public Set<Schedule> getAppointments() {
+        return appointments;
     }
 
     public Set<ProfessionalService> getProfessionals() {

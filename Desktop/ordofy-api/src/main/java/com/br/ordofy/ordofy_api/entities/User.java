@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table
@@ -23,6 +25,9 @@ public class User {
     @Embedded
     private Phone phone;
 
+    @OneToMany(mappedBy = "user")
+    private Set<Schedule> appointments = new HashSet<>();
+
     public User() {
     }
 
@@ -32,6 +37,10 @@ public class User {
         this.password = Password.create(password);
         this.phone = phone;
         this.username = username;
+    }
+
+    public Set<Schedule> getAppointments() {
+        return appointments;
     }
 
     public Instant getBirth() {
