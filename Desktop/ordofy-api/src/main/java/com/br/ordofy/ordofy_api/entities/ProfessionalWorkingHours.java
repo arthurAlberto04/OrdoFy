@@ -2,7 +2,6 @@ package com.br.ordofy.ordofy_api.entities;
 
 import com.br.ordofy.ordofy_api.entities.enums.DayOfWeek;
 import jakarta.persistence.*;
-import org.springframework.data.annotation.Id;
 
 import java.time.LocalTime;
 import java.util.Objects;
@@ -10,8 +9,8 @@ import java.util.Objects;
 @Entity
 public class ProfessionalWorkingHours {
     @Id
-    @GeneratedValue
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @Enumerated(EnumType.STRING)
     private DayOfWeek dayOfWeek;
@@ -40,7 +39,7 @@ public class ProfessionalWorkingHours {
         return endTime;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 

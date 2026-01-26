@@ -28,7 +28,7 @@ public class UserController {
     public ResponseEntity<UserResponseDTO> insert(@RequestBody @Valid UserRequestDTO ur){
         UserResponseDTO dto = userService.insert(ur);
         URI uri = ServletUriComponentsBuilder
-                .fromCurrentRequest().path("/{id}").buildAndExpand().toUri();
+                .fromCurrentRequest().path("/{id}").buildAndExpand(dto.id()).toUri();
         return ResponseEntity.created(uri).body(dto);
     }
 }

@@ -9,9 +9,9 @@ import com.br.ordofy.ordofy_api.entities.User;
 import com.br.ordofy.ordofy_api.repositories.UserRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
+@Service
 public class UserService {
     
     @Autowired
@@ -23,7 +23,7 @@ public class UserService {
     }
 
     private UserResponseDTO toResponse(User referenceById) {
-        return new UserResponseDTO(referenceById.getUsername(), new EmailResponseDTO(referenceById.getEmail().getEmail()), referenceById.getPhone().toString(), referenceById.getBirth());
+        return new UserResponseDTO(referenceById.getId(), referenceById.getUsername(), new EmailResponseDTO(referenceById.getEmail().getEmail()), referenceById.getPhone().toString(), referenceById.getBirth());
     }
 
 

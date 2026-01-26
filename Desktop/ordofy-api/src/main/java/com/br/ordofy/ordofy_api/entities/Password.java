@@ -10,10 +10,13 @@ public class Password {
     private static final Pattern PASSWORD_PATTERN =
             Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&]).{8,}$");
 
-    private final String hashedValue;
+    private String hashedValue;
 
     private Password(String hashedValue) {
         this.hashedValue = hashedValue;
+    }
+
+    public Password() {
     }
 
     public static Password create(String rawPassword) {

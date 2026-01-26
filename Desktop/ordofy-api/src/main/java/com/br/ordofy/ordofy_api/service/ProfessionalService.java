@@ -49,4 +49,12 @@ public class ProfessionalService {
     }
 
 
+    public List<ProfessionalResponseDTO> getAllByBusinessId(int id) {
+        List<Professional> l = professionalRepository.findByBusinessId(id);
+        List<ProfessionalResponseDTO> list = new ArrayList<>();
+        for(Professional p : l){
+            list.add(toResponse(p));
+        }
+        return list;
+    }
 }

@@ -21,8 +21,14 @@ public class ProfessionalController {
     private ProfessionalService service;
 
     @GetMapping
-    public ResponseEntity<List<ProfessionalResponseDTO>> getAll(){
+    public ResponseEntity<List<ProfessionalResponseDTO>> getAllByBusinessId(){
         List<ProfessionalResponseDTO> list = service.getAll();
+        return ResponseEntity.ok().body(list);
+    }
+
+    @GetMapping(value = "/business/{id}")
+    public ResponseEntity<List<ProfessionalResponseDTO>> getAllByBusinessId(@PathVariable int id){
+        List<ProfessionalResponseDTO> list = service.getAllByBusinessId(id);
         return ResponseEntity.ok().body(list);
     }
 

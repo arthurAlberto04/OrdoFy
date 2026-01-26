@@ -10,7 +10,7 @@ public class Email {
     private static final Pattern EMAIL_PATTERN =
             Pattern.compile("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$");
 
-    private final String email;
+    private String email;
 
     public Email(String value) {
         if (value == null) {
@@ -20,6 +20,9 @@ public class Email {
             throw new IllegalArgumentException("Invalid email format");
         }
         this.email = value.toLowerCase();
+    }
+
+    public Email() {
     }
 
     public String getEmail() {
