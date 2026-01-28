@@ -3,7 +3,7 @@ package com.br.ordofy.ordofy_api.controller;
 
 import com.br.ordofy.ordofy_api.dtos.ProfessionalRequestDTO;
 import com.br.ordofy.ordofy_api.dtos.ProfessionalResponseDTO;
-import com.br.ordofy.ordofy_api.service.ProfessionalService;
+import com.br.ordofy.ordofy_api.service.ProfessionalDomainService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +18,7 @@ import java.util.List;
 public class ProfessionalController {
 
     @Autowired
-    private ProfessionalService service;
+    private ProfessionalDomainService service;
 
     @GetMapping
     public ResponseEntity<List<ProfessionalResponseDTO>> getAllByBusinessId(){

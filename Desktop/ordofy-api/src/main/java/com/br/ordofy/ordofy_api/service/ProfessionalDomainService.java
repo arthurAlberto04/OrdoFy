@@ -1,10 +1,8 @@
 package com.br.ordofy.ordofy_api.service;
 
 
-import com.br.ordofy.ordofy_api.dtos.BusinessResponseDTO;
 import com.br.ordofy.ordofy_api.dtos.ProfessionalRequestDTO;
 import com.br.ordofy.ordofy_api.dtos.ProfessionalResponseDTO;
-import com.br.ordofy.ordofy_api.entities.Business;
 import com.br.ordofy.ordofy_api.entities.Professional;
 import com.br.ordofy.ordofy_api.repositories.ProfessionalRepository;
 import jakarta.validation.Valid;
@@ -15,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ProfessionalService {
+public class ProfessionalDomainService {
 
     @Autowired
     private ProfessionalRepository professionalRepository;
@@ -44,10 +42,17 @@ public class ProfessionalService {
         return toResponse(professionalRepository.getReferenceById(id));
     }
 
+    public Professional getEntityById(int id) {
+        return professionalRepository.getReferenceById(id);
+    }
+
     public ProfessionalResponseDTO insert(@Valid ProfessionalRequestDTO dto) {
         return toResponse(professionalRepository.save(toProfessional(dto)));
     }
 
+    public ProfessionalResponseDTO response(Professional p){
+        return toResponse(p);
+    }
 
     public List<ProfessionalResponseDTO> getAllByBusinessId(int id) {
         List<Professional> l = professionalRepository.findByBusinessId(id);

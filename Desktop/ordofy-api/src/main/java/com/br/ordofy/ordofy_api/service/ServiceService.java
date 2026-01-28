@@ -34,11 +34,19 @@ public class ServiceService {
         return toResponse(serviceRepository.getReferenceById(id));
     }
 
+    public ServiceResponseDTO response(com.br.ordofy.ordofy_api.entities.Service s) {
+        return toResponse(s);
+    }
+
     public ServiceResponseDTO insert(@Valid ServiceRequestDTO dto) {
         return toResponse(serviceRepository.save(toService(dto)));
     }
 
     private com.br.ordofy.ordofy_api.entities.Service toService(@Valid ServiceRequestDTO dto) {
         return new com.br.ordofy.ordofy_api.entities.Service(dto.duration(), dto.name(), dto.price());
+    }
+
+    public com.br.ordofy.ordofy_api.entities.Service getEntityById(int serviceId) {
+        return serviceRepository.getReferenceById(serviceId);
     }
 }
