@@ -19,6 +19,7 @@ public class ProfessionalWorkingHours {
     private LocalTime endTime;
 
     @ManyToOne
+    @JoinColumn(name = "professional_id")
     private Professional professional;
 
     public ProfessionalWorkingHours(DayOfWeek dayOfWeek, LocalTime endTime, Professional professional, LocalTime startTime) {
