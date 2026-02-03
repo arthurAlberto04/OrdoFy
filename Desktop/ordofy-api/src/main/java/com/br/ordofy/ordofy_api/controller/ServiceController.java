@@ -2,7 +2,7 @@ package com.br.ordofy.ordofy_api.controller;
 
 import com.br.ordofy.ordofy_api.dtos.ServiceRequestDTO;
 import com.br.ordofy.ordofy_api.dtos.ServiceResponseDTO;
-import com.br.ordofy.ordofy_api.service.ServiceService;
+import com.br.ordofy.ordofy_api.service.ServiceDomainService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +17,7 @@ import java.util.List;
 public class ServiceController {
 
     @Autowired
-    private ServiceService service;
+    private ServiceDomainService service;
 
     @GetMapping
     public ResponseEntity<List<ServiceResponseDTO>> getAll(){

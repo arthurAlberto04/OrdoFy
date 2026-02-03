@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ServiceService {
+public class ServiceDomainService {
 
     @Autowired
     private ServiceRepository serviceRepository;

@@ -10,7 +10,6 @@ import com.br.ordofy.ordofy_api.repositories.ProfessionalServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -23,7 +22,7 @@ public class ProfessionalServiceService {
     private ProfessionalDomainService professionalService;
 
     @Autowired
-    private ServiceService serviceService;
+    private ServiceDomainService serviceService;
 
     public List<ServiceResponseDTO> getAllServicesByProfessionalId(int id) {
         return professionalServiceRepository.findById_Professional_Id(id)
