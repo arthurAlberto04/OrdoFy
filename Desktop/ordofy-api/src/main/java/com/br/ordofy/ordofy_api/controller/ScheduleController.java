@@ -3,7 +3,6 @@ package com.br.ordofy.ordofy_api.controller;
 
 import com.br.ordofy.ordofy_api.dtos.ScheduleRequestDTO;
 import com.br.ordofy.ordofy_api.dtos.ScheduleResponseDTO;
-import com.br.ordofy.ordofy_api.entities.Schedule;
 import com.br.ordofy.ordofy_api.service.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

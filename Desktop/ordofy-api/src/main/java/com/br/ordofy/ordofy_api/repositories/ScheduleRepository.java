@@ -1,9 +1,11 @@
 package com.br.ordofy.ordofy_api.repositories;
 
 import com.br.ordofy.ordofy_api.entities.Schedule;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,4 +22,6 @@ public interface ScheduleRepository extends JpaRepository<Schedule, Integer> {
     List<Schedule> findByService_IdAndProfessional_Business_Id(int id, int businessId);
 
     List<Schedule> findByUser_usernameAndProfessional_Business_Id(String username, int businessId);
+
+    boolean existsByProfessional_IdAndDateAndStartLessThanAndEndGreaterThan(int i,LocalDate date, LocalTime end,LocalTime start);
 }

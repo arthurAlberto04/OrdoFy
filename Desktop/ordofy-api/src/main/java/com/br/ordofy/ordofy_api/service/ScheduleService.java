@@ -1,15 +1,20 @@
 package com.br.ordofy.ordofy_api.service;
 
+import com.br.ordofy.ordofy_api.dtos.ProfessionalWorkingHoursResponseDTO;
 import com.br.ordofy.ordofy_api.dtos.ScheduleRequestDTO;
 import com.br.ordofy.ordofy_api.dtos.ScheduleResponseDTO;
 import com.br.ordofy.ordofy_api.entities.Professional;
+import com.br.ordofy.ordofy_api.entities.ProfessionalWorkingHours;
 import com.br.ordofy.ordofy_api.entities.Schedule;
 import com.br.ordofy.ordofy_api.entities.User;
 import com.br.ordofy.ordofy_api.repositories.ScheduleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -27,6 +32,9 @@ public class ScheduleService {
 
     @Autowired
     private ProfessionalDomainService professionalDomainService;
+
+    @Autowired
+    private ProfessionalWorkingHoursService professionalWorkingHoursService;
 
     public List<ScheduleResponseDTO> getByProfessionalIdAndDate(int id, LocalDate date) {
         return repository.findByProfessional_IdAndDate(id, date).stream().map(this::toResponse).toList();
@@ -73,6 +81,49 @@ public class ScheduleService {
         com.br.ordofy.ordofy_api.entities.Service s = serviceService.getEntityById(dto.serviceId());
         Professional p = professionalDomainService.getEntityById(dto.professionalId());
         User user = userService.getEntityById(dto.userId());
-        return new Schedule(dto.date(), dto.start().plus(s.getDuration()), p, s, dto.start(), user );
+        LocalTime end = dto.start().plus(s.getDuration());
+
+        boolean conflict = repository
+                .existsByProfessional_IdAndDateAndStartLessThanAndEndGreaterThan(
+                        dto.professionalId(),
+                        dto.date(),
+                        end,
+                        dto.start()
+                );
+
+        if (conflict) {
+            throw new RuntimeException("Horário já ocupado");
+        }
+        return new Schedule(dto.date(), end, p, s, dto.start(), user );
+    }
+
+    public List<LocalTime> getAvailableSlots(int professionalId, LocalDate date, int serviceId) {
+        com.br.ordofy.ordofy_api.entities.Service service = serviceService.getEntityById(serviceId);
+
+        ProfessionalWorkingHoursResponseDTO wh =
+                professionalWorkingHoursService.getByProfessionalIdAndDayOfWeek(professionalId, date.getDayOfWeek().getValue());
+
+        List<Schedule> schedules =
+                repository.findByProfessional_IdAndDate(professionalId, date);
+
+        List<LocalTime> occupied =
+                schedules.stream()
+                        .map(Schedule::getStart)
+                        .toList();
+
+        List<LocalTime> slots = new ArrayList<>();
+
+        LocalTime current = wh.startTime();
+
+        while(!current.plusMinutes(service.getDuration().toMinutes())
+                .isAfter(wh.endTime())){
+
+            if(!occupied.contains(current)){
+                slots.add(current);
+            }
+
+            current = current.plusMinutes(service.getDuration().toMinutes());
+        }
+        return slots;
     }
 }
